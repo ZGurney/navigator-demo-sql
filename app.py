@@ -43,11 +43,11 @@ DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
 with st.sidebar:
     st.markdown("""
-    <style>
-    .css-o18uir.e16nr0p33 {
-    margin-top: -75px;
-    }
-    </style>
+        <style>
+            .css-o18uir.e16nr0p33 {
+              margin-top: -75px;
+            }
+          </style>
     """, unsafe_allow_html=True)
     
     st.title("Ask me anything!")

@@ -6,9 +6,9 @@ import streamlit as st
 
 from langchain import hub
 from langchain.agents import AgentExecutor, Tool, create_react_agent
-from langchain.chains import LLMMathChain
+#from langchain.chains import LLMMathChain
 from langchain_community.callbacks import StreamlitCallbackHandler
-from langchain_community.utilities import DuckDuckGoSearchAPIWrapper, SQLDatabase
+from langchain_community.utilities import SQLDatabase#, DuckDuckGoSearchAPIWrapper
 from langchain_core.runnables import RunnableConfig
 from langchain_experimental.sql import SQLDatabaseChain
 from langchain_openai import AzureChatOpenAI
@@ -38,21 +38,21 @@ llm = AzureChatOpenAI(
     temperature=0, 
     streaming=True
 )
-search = DuckDuckGoSearchAPIWrapper()
-llm_math_chain = LLMMathChain.from_llm(llm)
+# search = DuckDuckGoSearchAPIWrapper()
+# llm_math_chain = LLMMathChain.from_llm(llm)
 db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
 db_chain = SQLDatabaseChain.from_llm(llm, db)
 tools = [
-    Tool(
-        name="Search",
-        func=search.run,
-        description="useful for when you need to answer questions about current events. You should ask targeted questions",
-    ),
-    Tool(
-        name="Calculator",
-        func=llm_math_chain.run,
-        description="useful for when you need to answer questions about math",
-    ),
+    # Tool(
+    #     name="Search",
+    #     func=search.run,
+    #     description="useful for when you need to answer questions about current events. You should ask targeted questions",
+    # ),
+    # Tool(
+    #     name="Calculator",
+    #     func=llm_math_chain.run,
+    #     description="useful for when you need to answer questions about math",
+    # ),
     Tool(
         name="Patents DB",
         func=db_chain.run,

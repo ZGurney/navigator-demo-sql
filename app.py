@@ -23,20 +23,20 @@ os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OAI_KEY"]
 os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 
 # Set page config
-st.set_page_config(page_title="Executive Navigator Demo")
+st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
+remove_padding_css = """
+    .block-container {
+    padding: 0 1rem;
+    }
+    """
+st.markdown(
+    "<style>"
+    + remove_padding_css
+    + "</styles>",
+    unsafe_allow_html=True,
+)
 #st.image("logo.png", width=300)
 st.title("Executive Navigator Demo")
-
-st.markdown("""
-        <style>
-               .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 0rem;
-                    padding-left: -1000px;
-                    padding-right: 5rem;
-                }
-        </style>
-        """, unsafe_allow_html=True)
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

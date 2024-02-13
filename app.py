@@ -42,7 +42,7 @@ st.markdown("""
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
 with st.sidebar:
-    st.markdown(" <style> div[class^='st-emotion-cache-10oheav'] { padding-top: 0rem; } </style> ", unsafe_allow_html=True)
+    st.markdown(" <style> div[class^='st-emotion-cache-10oheav'] { padding-top: -75px; } </style> ", unsafe_allow_html=True)
     st.title("Ask me anything!")
     
     # Tools setup

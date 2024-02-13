@@ -42,7 +42,9 @@ st.markdown("""
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
 with st.sidebar:
-    
+
+         st.title("Ask me anything!")
+        
     # Tools setup
     llm = AzureChatOpenAI(
         api_version=st.secrets["AZURE_OAI_API_VERSION"],

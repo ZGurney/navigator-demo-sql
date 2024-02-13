@@ -22,6 +22,11 @@ from modules.clear_results import with_clear_container
 os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OAI_KEY"]
 os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 
+# Set page config
+st.set_page_config(page_title="Executive Navigator Demo")
+#st.image("logo.png", width=300)
+st.title("Executive Navigator Demo")
+
 st.markdown("""
         <style>
                .block-container {
@@ -32,11 +37,6 @@ st.markdown("""
                 }
         </style>
         """, unsafe_allow_html=True)
-
-# Set page config
-st.set_page_config(page_title="Executive Navigator Demo")
-#st.image("logo.png", width=300)
-st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

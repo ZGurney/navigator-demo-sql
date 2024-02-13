@@ -1,0 +1,12 @@
+streamlit
+langchain
+langchain-community
+langchain-experimental
+langchainhub
+langchain-openai
+faiss-cpu
+openai
+pypdf
+unstructured
+networkx
+openpyxl

@@ -1,0 +1,16 @@
+# Ignore Mac files
+.DS_Store
+
+# Ignore .env files
+.env
+.gpt4.env
+secrets.toml
+
+# Ignore Excel files
+*.xlsx
+
+# Ignore large patents database
+data/extra
+
+# Ignore cached Python files
+*.pyc

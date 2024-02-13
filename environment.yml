@@ -1,0 +1,20 @@
+name: navigator_demo
+channels:
+ - conda-forge
+ - defaults
+dependencies:
+ - python=3.10
+ - streamlit
+ - faiss-cpu
+ - openai
+ - pypdf
+ - pip
+ - pip:
+   - langchain
+   - langchain-community
+   - langchain-experimental
+   - langchainhub
+   - langchain-openai
+   - unstructured
+   - networkx
+   - openpyxl

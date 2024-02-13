@@ -10,3 +10,4 @@ pypdf
 unstructured
 networkx
 openpyxl
+duckduckgo-search

@@ -31,10 +31,6 @@ st.title("Executive Navigator Demo")
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
 with st.sidebar:
-    # Set page config
-    st.set_page_config(page_title="Executive Navigator Demo")
-    st.image("logo.png", width=300)
-    st.title("Executive Navigator Demo")
     
     # Tools setup
     llm = AzureChatOpenAI(

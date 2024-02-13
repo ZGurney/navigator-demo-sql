@@ -91,7 +91,7 @@ power_bi_url = "https://app.powerbi.com/view?r=eyJrIjoiMzU3YmZiOGEtNGExNi00OWQxL
 custom_css = """
 <style>
     .power-bi-iframe {
-        width: 100%;
+        width: 140%;
         height: 100vh;
         border: none;
         overflow: hidden;

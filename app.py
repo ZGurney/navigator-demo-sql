@@ -25,12 +25,12 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
-# Set page config
-st.set_page_config(page_title="Executive Navigator Demo")
-st.image("logo.png", width=300)
-st.title("Executive Navigator Demo")
-
 with st.sidebar:
+    # Set page config
+    st.set_page_config(page_title="Executive Navigator Demo")
+    st.image("logo.png", width=300)
+    st.title("Executive Navigator Demo")
+    
     # Tools setup
     llm = AzureChatOpenAI(
         api_version=st.secrets["AZURE_OAI_API_VERSION"],

@@ -24,7 +24,7 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 
 # Set page config
 st.set_page_config(page_title="Executive Navigator Demo")
-st.image("logo.png", width=300)
+#st.image("logo.png", width=300)
 st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db
@@ -83,3 +83,22 @@ with st.sidebar:
         answer = mrkl.invoke({"input": user_input}, cfg)
     
         answer_container.write(answer["output"])
+
+# Power BI report URL
+power_bi_url = "https://app.powerbi.com/view?r=eyJrIjoiMzU3YmZiOGEtNGExNi00OWQxLWI3OTAtMzA4MGFiOTlmODE3IiwidCI6ImIwMDM2N2UyLTE5M2EtNGY0OC05NGRlLTcyNDVkNDVjMDk0NyIsImMiOjh9"
+
+# Define custom CSS to style the iframe
+custom_css = """
+<style>
+    .power-bi-iframe {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        overflow: hidden;
+    }
+</style>
+"""
+
+# Display the Power BI report with custom CSS
+st.markdown(custom_css, unsafe_allow_html=True)
+st.markdown(f'<iframe class="power-bi-iframe" src="{power_bi_url}"></iframe>', unsafe_allow_html=True)

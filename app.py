@@ -31,7 +31,7 @@ st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
 custom_css = """
 <style>
     body {
-        padding-top: 20px; /* Add padding only at the top */
+        padding-top: 10px; /* Add padding only at the top */
     }
 </style>
 """

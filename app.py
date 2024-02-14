@@ -22,28 +22,25 @@ from modules.clear_results import with_clear_container
 os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OAI_KEY"]
 os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 
+import streamlit as st
+
 # Set page config
 st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
 
-# Define CSS to remove padding and add padding at the top
-combined_css = """
+# Define CSS to add padding at the top
+custom_css = """
 <style>
-    .block-container {
-        padding: 0; /* Remove padding from all sides */
-    }
-    .custom-padding-top {
+    body {
         padding-top: 20px; /* Add padding only at the top */
     }
 </style>
 """
 
 # Apply the custom CSS
-st.markdown(combined_css, unsafe_allow_html=True)
+st.write(custom_css, unsafe_allow_html=True)
 
 # Display the images
-st.markdown("<div class='custom-padding-top'>", unsafe_allow_html=True)
 st.image(["Screenshot 2024-02-14 110753.png", "logo_colour.png"])
-st.markdown("</div>", unsafe_allow_html=True)
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

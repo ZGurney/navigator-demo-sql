@@ -46,12 +46,6 @@ st.image(["Screenshot 2024-02-14 110753.png", "logo_colour.png"])
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
 
 with st.sidebar:
-    st.markdown(
-        "<style>"
-        + remove_padding_css
-        + "</styles>",
-        unsafe_allow_html=True,
-    )
     st.title("Ask me anything!")
     
     # Tools setup

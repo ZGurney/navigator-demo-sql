@@ -35,7 +35,21 @@ st.markdown(
     + "</styles>",
     unsafe_allow_html=True,
 )
+
+height_hack = '''
+<script>
+    var hide_me_list = window.parent.document.querySelectorAll('iframe');
+    for (let i = 0; i < hide_me_list.length; i++) { 
+        if (hide_me_list[i].height == 0) {
+            hide_me_list[i].parentNode.style.height = 0;
+            hide_me_list[i].parentNode.style.marginBottom = '-1rem';
+        };
+    };
+</script>
+'''
+
 st.image("Screenshot 2024-02-14 093213.png", width=200)
+st.components.v1.html(height_hack, height=0)
 st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db

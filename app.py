@@ -39,7 +39,7 @@ st.markdown(
 st.markdown("""
     <style>
     [data-testid=column]:nth-of-type(1) [data-testid=stVerticalBlock]{
-        gap: 0rem;
+        gap: 5rem;
     }
     </style>
     """,unsafe_allow_html=True)

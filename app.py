@@ -29,7 +29,7 @@ st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
 combined_css = """
 <style>
     .block-container {
-        padding: 0 1rem; /* Remove padding from all sides */
+        padding: 0; /* Remove padding from all sides */
     }
     .custom-padding-top {
         padding-top: 20px; /* Add padding only at the top */

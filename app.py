@@ -46,8 +46,8 @@ st.write(combined_css, unsafe_allow_html=True)
 st.image("Screenshot 2024-02-14 112940.png")
 st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
 
-# Set path to database /data/patents.db
-DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()
+# Set path to database /data/patents-100k.db
+DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
 with st.sidebar:
     st.title("Ask me anything!")

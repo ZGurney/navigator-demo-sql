@@ -34,7 +34,7 @@ combined_css = """
         padding: 0; /* Remove padding from all sides */
     }
     .custom-padding-top {
-        padding-top: 20px; /* Add padding only at the top */
+        padding-top: 30px; /* Add padding only at the top */
     }
 </style>
 """

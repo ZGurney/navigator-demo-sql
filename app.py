@@ -36,15 +36,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown("""
-    <style>
-    [data-testid=column]:nth-of-type(1) [data-testid=stVerticalBlock]{
-        gap: 750px;
-    }
-    </style>
-    """,unsafe_allow_html=True)
-
-st.image("Screenshot 2024-02-14 093213.png", width=200)
+st.image("Screenshot 2024-02-14 093213.png", width=250)
 st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db

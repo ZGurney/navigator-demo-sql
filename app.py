@@ -35,7 +35,7 @@ st.markdown(
     + "</styles>",
     unsafe_allow_html=True,
 )
-st.image("Screenshot 2024-02-14 093213.png", width=350)
+st.image("Screenshot 2024-02-14 093213.png", width=400)
 st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db

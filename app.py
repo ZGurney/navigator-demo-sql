@@ -35,7 +35,7 @@ st.markdown(
     + "</styles>",
     unsafe_allow_html=True,
 )
-st.image("logo.png", width=200)
+#st.image("logo.png", width=200)
 st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db
@@ -115,14 +115,9 @@ custom_css = """
         border: none;
         overflow: hidden;
     }
-    .spacer {
-        height: 100px; /* Adjust the height as needed */
-    }
 </style>
 """
 
-# Display the Power BI report with custom CSS and spacer
+# Display the Power BI report with custom CSS
 st.markdown(custom_css, unsafe_allow_html=True)
-st.markdown('<div class="spacer"></div>', unsafe_allow_html=True)  # Spacer to move the iframe down
-st.markdown(f'<iframe class="power-bi-iframe" src="{power_bi_url}"></iframe>', unsafe_allow_html=True)
 st.markdown(f'<iframe class="power-bi-iframe" src="{power_bi_url}"></iframe>', unsafe_allow_html=True)

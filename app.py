@@ -24,18 +24,26 @@ os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OAI_ENDPOINT"]
 
 # Set page config
 st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
-remove_padding_css = """
+
+# Define CSS to remove padding and add padding at the top
+combined_css = """
+<style>
     .block-container {
-    padding: 0 1rem;
+        padding: 0 1rem; /* Remove padding from all sides */
     }
-    """
-st.markdown(
-    "<style>"
-    + remove_padding_css
-    + "</styles>",
-    unsafe_allow_html=True,
-)
+    .custom-padding-top {
+        padding-top: 20px; /* Add padding only at the top */
+    }
+</style>
+"""
+
+# Apply the custom CSS
+st.markdown(combined_css, unsafe_allow_html=True)
+
+# Display the images
+st.markdown("<div class='custom-padding-top'>", unsafe_allow_html=True)
 st.image(["Screenshot 2024-02-14 110753.png", "logo_colour.png"])
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

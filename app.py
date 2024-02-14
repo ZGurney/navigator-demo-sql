@@ -30,11 +30,11 @@ st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
 # Define CSS to add padding at the top
 combined_css = """
 <style>
-    .block-container {
-        padding: 0; /* Remove padding from all sides */
-    }
     .custom-padding-top {
         padding-top: 30px; /* Add padding only at the top */
+    }
+    .block-container {
+        padding: 0; /* Remove padding from all sides */
     }
 </style>
 """

@@ -35,7 +35,7 @@ st.markdown(
     + "</styles>",
     unsafe_allow_html=True,
 )
-st.image(["Screenshot 2024-02-14 110312.png", "logo_colour.png"])
+st.image(["Screenshot 2024-02-14 110753.png", "logo_colour.png"])
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

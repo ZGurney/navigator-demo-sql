@@ -28,10 +28,13 @@ import streamlit as st
 st.set_page_config(page_title="Executive Navigator Demo", layout="wide")
 
 # Define CSS to add padding at the top
-custom_css = """
+combined_css = """
 <style>
-    body {
-        padding-top: 10px; /* Add padding only at the top */
+    .block-container {
+        padding: 0; /* Remove padding from all sides */
+    }
+    .custom-padding-top {
+        padding-top: 20px; /* Add padding only at the top */
     }
 </style>
 """

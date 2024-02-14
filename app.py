@@ -43,6 +43,7 @@ combined_css = """
 st.write(combined_css, unsafe_allow_html=True)
 
 # Display the images
+st.image("Screenshot 2024-02-14 112806.png")
 st.image(["Screenshot 2024-02-14 110753.png", "logo_colour.png"])
 
 # Set path to database /data/patents.db

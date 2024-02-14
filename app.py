@@ -36,7 +36,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.image(["logo.png", "logo_colour.png"], width=200)
-st.title("Executive Navigator Demo")
 
 # Set path to database /data/patents.db
 DB_PATH = (Path(__file__).parent / "data/patents.db").absolute()

@@ -49,13 +49,7 @@ st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
-col1, col2 = st.beta_columns([4,1])
-            with col1:
-                st.markdown(f"**{row['name']}**({row['short_name']})", unsafe_allow_html=True)
-                st.markdown(row['description'])
-            with col2:
-                if st.button(label='Open',key=row['id']):
-                    pass 
+col1, col2 = st.columns([4, 1]) 
 
 with col2:
     st.title("Ask me anything!")

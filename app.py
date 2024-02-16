@@ -53,8 +53,8 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 initial_widths = [4, 1]  
 
 # Slider widgets for adjusting column widths
-width_slider1 = st.slider("Dahsboard", 1, 10, initial_widths[0], step=1, width=100)
-width_slider2 = st.slider("Chat", 1, 10, initial_widths[1], step=1, width=100)
+width_slider1 = st.slider("Dashboard", 1, 10, initial_widths[0], width=100)
+width_slider2 = st.slider("Chat", 1, 10, initial_widths[1], width=100)
 
 # Divide the layout into two columns with adjusted widths
 col1, col2 = st.columns([width_slider1, width_slider2]) 

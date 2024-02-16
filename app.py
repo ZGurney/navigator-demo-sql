@@ -42,10 +42,6 @@ combined_css = """
 # Apply the custom CSS
 st.write(combined_css, unsafe_allow_html=True)
 
-# Display the images
-st.image("Screenshot 2024-02-14 112940.png")
-st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
-
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
@@ -124,6 +120,10 @@ custom_css = """
 """
 
 with col1:
+    # Display the images
+    st.image("Screenshot 2024-02-14 112940.png")
+    st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
+
     # Display the Power BI report with custom CSS
     st.markdown(custom_css, unsafe_allow_html=True)
     st.markdown(f'<iframe class="power-bi-iframe" src="{power_bi_url}"></iframe>', unsafe_allow_html=True)

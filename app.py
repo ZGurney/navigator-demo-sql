@@ -53,7 +53,7 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 col1, col2 = st.columns([4, 1])  
 
 with col2:
-    st.title("Ask me anything!")
+    st.subheader("Ask me anything!")
     
     # Tools setup
     llm = AzureChatOpenAI(

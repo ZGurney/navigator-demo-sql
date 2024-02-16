@@ -48,19 +48,20 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 # Divide the layout into two columns
 col1, col2 = st.columns([4, 1.2])  
 
-col2.markdown(
-    """
-    <style>
-    .col2-background {
-        background-color: #121922;
-        padding: 1rem;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 with col2:
+
+    st.markdown(
+        """
+        <style>
+        .col2-background {
+            background-color: #121922;
+            padding: 1rem;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
     st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")
     

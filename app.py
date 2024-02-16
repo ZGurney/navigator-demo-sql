@@ -52,7 +52,10 @@ with col2:
 
     st.markdown("""
 
-    section[data-testid=“column”] div[class=“css-17eq0hr e1fqkh3o1”] {background-image: linear-gradient(#8993ab,#8993ab);color: white}
+    section[data-testid="column"] div[class^="css-"] {
+    background-image: linear-gradient(#8993ab, #8993ab);
+    color: white;
+    }
     
     “”",unsafe_allow_html=True)
     

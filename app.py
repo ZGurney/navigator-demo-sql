@@ -54,7 +54,7 @@ with col2:
         <style>
             section[data-testid="column"] div[class^="css-"] {
                 background-image: linear-gradient(#8993ab, #8993ab);
-                color: white;
+                color: grey;
             }
         </style>
     """, unsafe_allow_html=True)

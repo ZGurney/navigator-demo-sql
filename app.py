@@ -52,12 +52,12 @@ with col2:
 
     st.markdown("""
 
-    section[data-testid="column"] div[class^="css-"] {
-    background-image: linear-gradient(#8993ab, #8993ab);
-    color: white;
-    }
-    
-    “”",unsafe_allow_html=True)
+        section[data-testid="column"] div[class^="css-"] {
+            background-image: linear-gradient(#8993ab, #8993ab);
+            color: white;
+        }
+        
+        """, unsafe_allow_html=True)
     
     st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")

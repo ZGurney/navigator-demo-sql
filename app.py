@@ -53,60 +53,59 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 col1, col2 = st.columns([4, 1])  
 
 with col2:
-    with st.sidebar:
-        st.title("Ask me anything!")
+    st.title("Ask me anything!")
+    
+    # Tools setup
+    llm = AzureChatOpenAI(
+        api_version=st.secrets["AZURE_OAI_API_VERSION"],
+        deployment_name=st.secrets["AZURE_OAI_DEPLOYMENT"],
+        model_name=st.secrets["AZURE_OAI_MODEL"],
+        temperature=0, 
+        streaming=True
+    )
+    # search = DuckDuckGoSearchAPIWrapper()
+    # llm_math_chain = LLMMathChain.from_llm(llm)
+    db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
+    db_chain = SQLDatabaseChain.from_llm(llm, db)
+    tools = [
+        # Tool(
+        #     name="Search",
+        #     func=search.run,
+        #     description="useful for when you need to answer questions about current events. You should ask targeted questions",
+        # ),
+        # Tool(
+        #     name="Calculator",
+        #     func=llm_math_chain.run,
+        #     description="useful for when you need to answer questions about math",
+        # ),
+        Tool(
+            name="Patents DB",
+            func=db_chain.run,
+            description="useful for when you need to answer questions about patents. Input should be in the form of a question containing full context",
+        ),
+    ]
+
+    # Initialize agent with prompt from hwchase17/react on LangChain Hub
+    react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
+    mrkl = AgentExecutor(agent=react_agent, tools=tools)
+
+    with st.form(key="form"):
+        user_input = st.text_input("User query")
+        submit_clicked = st.form_submit_button("Submit Question")
         
-        # Tools setup
-        llm = AzureChatOpenAI(
-            api_version=st.secrets["AZURE_OAI_API_VERSION"],
-            deployment_name=st.secrets["AZURE_OAI_DEPLOYMENT"],
-            model_name=st.secrets["AZURE_OAI_MODEL"],
-            temperature=0, 
-            streaming=True
-        )
-        # search = DuckDuckGoSearchAPIWrapper()
-        # llm_math_chain = LLMMathChain.from_llm(llm)
-        db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
-        db_chain = SQLDatabaseChain.from_llm(llm, db)
-        tools = [
-            # Tool(
-            #     name="Search",
-            #     func=search.run,
-            #     description="useful for when you need to answer questions about current events. You should ask targeted questions",
-            # ),
-            # Tool(
-            #     name="Calculator",
-            #     func=llm_math_chain.run,
-            #     description="useful for when you need to answer questions about math",
-            # ),
-            Tool(
-                name="Patents DB",
-                func=db_chain.run,
-                description="useful for when you need to answer questions about patents. Input should be in the form of a question containing full context",
-            ),
-        ]
-    
-        # Initialize agent with prompt from hwchase17/react on LangChain Hub
-        react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
-        mrkl = AgentExecutor(agent=react_agent, tools=tools)
-    
-        with st.form(key="form"):
-            user_input = st.text_input("User query")
-            submit_clicked = st.form_submit_button("Submit Question")
-            
-        output_container = st.empty()
-        if with_clear_container(submit_clicked):
-            output_container = output_container.container()
-            output_container.chat_message("user").write(user_input)
-            
-            answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
-            st_callback = StreamlitCallbackHandler(answer_container)
-            cfg = RunnableConfig()
-            cfg["callbacks"] = [st_callback]
-            
-            answer = mrkl.invoke({"input": user_input}, cfg)
-            
-            answer_container.write(answer["output"])
+    output_container = st.empty()
+    if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
+        
+        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        st_callback = StreamlitCallbackHandler(answer_container)
+        cfg = RunnableConfig()
+        cfg["callbacks"] = [st_callback]
+        
+        answer = mrkl.invoke({"input": user_input}, cfg)
+        
+        answer_container.write(answer["output"])
 
 
 # Power BI report URL

@@ -50,17 +50,7 @@ col1, col2 = st.columns([4, 1.2])
 
 with col2:
 
-    st.markdown(
-        """
-        <style>
-        .col2-background {
-            background-color: #121922;
-            padding: 1rem;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown( """ <style> .sidebar .sidebar-content { background-image: linear-gradient(#2e7bcf,#2e7bcf); color: white; } </style> """, unsafe_allow_html=True, )
     
     st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")

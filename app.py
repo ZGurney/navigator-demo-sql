@@ -49,6 +49,7 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 col1, col2 = st.columns([4, 1])  
 
 with col2:
+    st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")
     
     # Tools setup

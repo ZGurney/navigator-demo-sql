@@ -51,6 +51,8 @@ col1, col2 = st.columns([4, 1.2])
 with col2:
     st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")
+
+    st.markdown("<span style=“background-color:#121922”>",unsafe_allow_html=True)
     
     # Tools setup
     llm = AzureChatOpenAI(

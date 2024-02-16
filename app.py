@@ -49,7 +49,17 @@ st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
-col1, col2 = st.columns([4, 1]) 
+# Define the background color for the second column (col2)
+col2_bg_color = "#f0f0f0"  # Example color (light grey)
+
+# Divide the layout into two columns
+col1, col2 = st.columns([4, 1])  # Adjust widths as needed
+
+# Set the background color for the second column
+with col2.beta_container():
+    st.markdown(f'<style>div.stDataFrame.row-widget {{
+                background-color: {col2_bg_color} !important;
+                }}</style>', unsafe_allow_html=True)
 
 with col2:
     st.title("Ask me anything!")

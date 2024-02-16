@@ -49,7 +49,15 @@ st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
-col1, col2 = st.columns([4, 1])  # Adjust the widths as needed
+# Define the initial widths of the columns
+initial_widths = [4, 1]  
+
+# Slider widgets for adjusting column widths
+width_slider1 = st.slider("Dahsboard", 1, 10, initial_widths[0])
+width_slider2 = st.slider("Chat", 1, 10, initial_widths[1])
+
+# Divide the layout into two columns with adjusted widths
+col1, col2 = st.columns([width_slider1, width_slider2]) 
 
 with col2:
     st.title("Ask me anything!")

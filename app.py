@@ -46,7 +46,7 @@ st.write(combined_css, unsafe_allow_html=True)
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
 # Divide the layout into two columns
-col1, col2 = st.columns([4, 1.5])  
+col1, col2 = st.columns([4, 1.2])  
 
 with col2:
     st.image("Screenshot 2024-02-14 112940.png")

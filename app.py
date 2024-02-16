@@ -49,7 +49,7 @@ st.image(["logo_colour.png", "Screenshot 2024-02-14 110753.png"])
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
-col1, col2 = st.columns([3, 2])  # Adjust the widths as needed
+col1, col2 = st.columns([4, 1])  # Adjust the widths as needed
 
 with col2:
     st.title("Ask me anything!")

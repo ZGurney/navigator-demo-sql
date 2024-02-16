@@ -57,9 +57,7 @@ col1, col2 = st.columns([4, 1])  # Adjust widths as needed
 
 # Set the background color for the second column
 with col2.beta_container():
-    st.markdown(f'<style>div.stDataFrame.row-widget {{
-                background-color: {col2_bg_color} !important;
-                }}</style>', unsafe_allow_html=True)
+    st.markdown(f'<style>div.stDataFrame.row-widget {{background-color: {col2_bg_color} !important;}}</style>', unsafe_allow_html=True)
 
 with col2:
     st.title("Ask me anything!")

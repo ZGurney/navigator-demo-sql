@@ -96,13 +96,17 @@ with col2:
     # Initialize agent with prompt from hwchase17/react on LangChain Hub
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
-    
-    output_container = st.empty()
 
     # Define a container for messages
     with st.container():
         messages = st.container(height=300)
         prompt = st.chat_input("Say something")
+
+        output_container = st.empty()
+
+        if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
     
         if prompt:
             # Process the user's prompt

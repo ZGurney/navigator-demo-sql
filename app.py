@@ -93,7 +93,7 @@ with col2:
         ),
     ]
 
-# Initialize agent with prompt from hwchase17/react on LangChain Hub
+    # Initialize agent with prompt from hwchase17/react on LangChain Hub
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
 
@@ -104,7 +104,11 @@ with col2:
     output_container = st.empty()
     if user_input:
         answer = mrkl.invoke({"input": user_input})
-        output_container.write(answer["output"])
+        # Assuming user avatar is "user_avatar.png" and assistant avatar is "assistant_avatar.png"
+        with st.chat_message(name="user", avatar="user_avatar.png"):
+            st.write(user_input)
+        with st.chat_message(name="assistant", avatar="assistant_avatar.png"):
+            st.write(answer["output"])
 
 
 # Power BI report URL

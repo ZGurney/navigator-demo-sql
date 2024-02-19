@@ -111,11 +111,6 @@ with col2:
         # Check if answer contains the "output" key
         if "output" in answer:
             messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write(answer["output"])
-        else:
-            messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write("Error: No response received")
-    
-    # Display a chat input field for user input
-    user_input = st.text_input("User query")
     
     # Process user input from the chat input field
     if st.button("Submit"):

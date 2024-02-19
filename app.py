@@ -96,10 +96,6 @@ with col2:
     # Initialize agent with prompt from hwchase17/react on LangChain Hub
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
-
-    with st.form(key="form"):
-        user_input = st.text_input("User query")
-        submit_clicked = st.form_submit_button("Submit Question")
     
     output_container = st.empty()
 

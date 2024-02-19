@@ -97,18 +97,21 @@ with col2:
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
 
-    # Chat input
     user_input = st.chat_input("User query")
-    
-    # Submit user input and display response
+        
     output_container = st.empty()
-    if user_input:
-        answer = mrkl.invoke({"input": user_input})
-        # Assuming user avatar is "user_avatar.png" and assistant avatar is "assistant_avatar.png"
-        with st.chat_message(name="user", avatar="user_avatar.png"):
-            st.write(user_input)
-        with st.chat_message(name="assistant", avatar="assistant_avatar.png"):
-            st.write(answer["output"])
+    if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
+        
+        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        st_callback = StreamlitCallbackHandler(answer_container)
+        cfg = RunnableConfig()
+        cfg["callbacks"] = [st_callback]
+        
+        answer = mrkl.invoke({"input": user_input}, cfg)
+        
+        answer_container.write(answer["output"])
 
 
 # Power BI report URL

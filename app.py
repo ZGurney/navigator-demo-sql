@@ -103,7 +103,7 @@ with col2:
             messages = st.container(height=300)
             prompt = st.chat_input("Say something")
     
-    output_container = st.empty()
+        output_container = st.empty()
 
         if with_clear_container(submit_clicked):
             output_container = output_container.container()

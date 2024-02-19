@@ -93,31 +93,27 @@ with col2:
         ),
     ]
 
-    # Initialize agent with prompt from hwchase17/react on LangChain Hub
+# Initialize agent with prompt from hwchase17/react on LangChain Hub
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
-    
-    # Define a container for messages
-    with st.container():
-        with st.form(key="form"):
-            messages = st.container(height=300)
-            prompt = st.chat_input("Say something")
-            submit_clicked = st.form_submit_button("Submit Question")
-    
-        output_container = st.empty()
 
-        if with_clear_container(submit_clicked):
-            output_container = output_container.container()
-            output_container.chat_message("user").write(user_input)
-    
-            answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
-            st_callback = StreamlitCallbackHandler(answer_container)
-            cfg = RunnableConfig()
-            cfg["callbacks"] = [st_callback]
-            
-            answer = mrkl.invoke({"input": user_input}, cfg)
-            
-            answer_container.write(answer["output"])
+    with st.form(key="form"):
+        user_input = st.chat_input("User query")
+        submit_clicked = st.form_submit_button("Submit Question")
+        
+    output_container = st.empty()
+    if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
+        
+        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        st_callback = StreamlitCallbackHandler(answer_container)
+        cfg = RunnableConfig()
+        cfg["callbacks"] = [st_callback]
+        
+        answer = mrkl.invoke({"input": user_input}, cfg)
+        
+        answer_container.write(answer["output"])
 
 
 # Power BI report URL

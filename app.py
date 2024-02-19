@@ -99,9 +99,11 @@ with col2:
     
     # Define a container for messages
     with st.container():
-        messages = st.container(height=300)
-        prompt = st.chat_input("Say something")
-        output_container = st.empty()
+        with st.form(key="form"):
+            messages = st.container(height=300)
+            prompt = st.chat_input("Say something")
+    
+    output_container = st.empty()
 
         if with_clear_container(submit_clicked):
             output_container = output_container.container()

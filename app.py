@@ -107,19 +107,22 @@ with col2:
         
         # Display user input and agent's response in the chat container
         messages.chat_message("user").write(user_input)
-        messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write(answer["output"])
+        
+        # Check if answer contains the "output" key
+        if "output" in answer:
+            messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write(answer["output"])
+        else:
+            messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write("Error: No response received")
     
-    # Display a form for user input
-    with st.form(key="form"):
-        user_input = st.text_input("User query")
-        submit_clicked = st.form_submit_button("Submit Question")
+    # Display a chat input field for user input
+    user_input = st.text_input("User query")
     
-    # Process user input when form is submitted
-    if submit_clicked:
+    # Process user input from the chat input field
+    if st.button("Submit"):
         process_user_input(user_input)
     
     # Display chat input at the bottom of the chat
-    if prompt := st.chat_input("Say something"):
+    if prompt := st.text_input("Say something"):
         process_user_input(prompt)
 
 

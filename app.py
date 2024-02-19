@@ -114,13 +114,13 @@ with col2:
         user_input = st.text_input("User query")
         submit_clicked = st.form_submit_button("Submit Question")
 
-# Process user input when form is submitted
-if with_clear_container(submit_clicked):
-    process_user_input(user_input)
-
-# Display chat input at the bottom of the chat
-if prompt := st.chat_input("Say something"):
-    process_user_input(prompt)
+    # Process user input when form is submitted
+    if with_clear_container(submit_clicked):
+        process_user_input(user_input)
+    
+    # Display chat input at the bottom of the chat
+    if prompt := st.chat_input("Say something"):
+        process_user_input(prompt)
 
 
 # Power BI report URL

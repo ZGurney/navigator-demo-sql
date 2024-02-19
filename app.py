@@ -101,19 +101,19 @@ with col2:
             user_input = st.text_input("User query")
             submit_clicked = st.form_submit_button("Submit Question")
             
-        output_container = st.empty()
-        if with_clear_container(submit_clicked):
-            output_container = output_container.container()
-            output_container.chat_message("user").write(user_input)
-            
-            answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
-            st_callback = StreamlitCallbackHandler(answer_container)
-            cfg = RunnableConfig()
-            cfg["callbacks"] = [st_callback]
-            
-            answer = mrkl.invoke({"input": user_input}, cfg)
-            
-            answer_container.write(answer["output"])
+    output_container = st.empty()
+    if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
+        
+        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        st_callback = StreamlitCallbackHandler(answer_container)
+        cfg = RunnableConfig()
+        cfg["callbacks"] = [st_callback]
+        
+        answer = mrkl.invoke({"input": user_input}, cfg)
+        
+        answer_container.write(answer["output"])
 
 
 # Power BI report URL

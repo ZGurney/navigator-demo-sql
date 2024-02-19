@@ -108,11 +108,6 @@ with col2:
         # Display user input and agent's response in the chat container
         messages.chat_message("user").write(user_input)
         messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write(answer["output"])
-    
-    # Display a form for user input
-    with st.form(key="form"):
-        user_input = st.text_input("User query")
-        submit_clicked = st.form_submit_button("Submit Question")
 
     # Process user input when form is submitted
     if with_clear_container(submit_clicked):

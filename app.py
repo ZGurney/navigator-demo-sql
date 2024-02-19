@@ -102,6 +102,7 @@ with col2:
         with st.form(key="form"):
             messages = st.container(height=300)
             prompt = st.chat_input("Say something")
+            submit_clicked = st.form_submit_button("Submit Question")
     
         output_container = st.empty()
 

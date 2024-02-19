@@ -1,3 +1,6 @@
+pip install streamlit-authenticator
+import streamlit_authenticator as stauth
+
 import os
 #from dotenv import load_dotenv
 from pathlib import Path

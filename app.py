@@ -93,32 +93,27 @@ with col2:
         ),
     ]
 
-   # Initialize agent with prompt from hwchase17/react on LangChain Hub
+    # Initialize agent with prompt from hwchase17/react on LangChain Hub
     react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
     mrkl = AgentExecutor(agent=react_agent, tools=tools)
-    
-    # Define a chat container for displaying messages
-    messages = st.empty()
-    
-    # This function processes user input and displays the response
-    def process_user_input(user_input):
-        # Process user input using the agent
+
+    with st.form(key="form"):
+        user_input = st.text_input("User query")
+        submit_clicked = st.form_submit_button("Submit Question")
+        
+    output_container = st.empty()
+    if with_clear_container(submit_clicked):
+        output_container = output_container.container()
+        output_container.chat_message("user").write(user_input)
+        
+        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        st_callback = StreamlitCallbackHandler(answer_container)
+        cfg = RunnableConfig()
+        cfg["callbacks"] = [st_callback]
+        
         answer = mrkl.invoke({"input": user_input}, cfg)
         
-        # Display user input and agent's response in the chat container
-        messages.chat_message("user").write(user_input)
-        
-        # Check if answer contains the "output" key
-        if "output" in answer:
-            messages.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png").write(answer["output"])
-    
-    # Process user input from the chat input field
-    if st.button("Submit"):
-        process_user_input(user_input)
-    
-    # Display chat input at the bottom of the chat
-    if prompt := st.text_input("Say something"):
-        process_user_input(prompt)
+        answer_container.write(answer["output"])
 
 
 # Power BI report URL

@@ -100,18 +100,20 @@ with col2:
     user_input = st.chat_input("User query")
         
     output_container = st.empty()
-    if with_clear_container(submit_clicked):
-        output_container = output_container.container()
-        output_container.chat_message("user").write(user_input)
-        
-        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
-        st_callback = StreamlitCallbackHandler(answer_container)
-        cfg = RunnableConfig()
-        cfg["callbacks"] = [st_callback]
-        
-        answer = mrkl.invoke({"input": user_input}, cfg)
-        
-        answer_container.write(answer["output"])
+    if user_input:
+        with output_container:
+            # Assuming user avatar is "user_avatar.png" and assistant avatar is "assistant_avatar.png"
+            with st.chat_message("user", avatar="user_avatar.png"):
+                st.write(user_input)
+    
+            answer_container = st.chat_message("assistant", avatar="assistant_avatar.png")
+            st_callback = StreamlitCallbackHandler(answer_container)
+            cfg = RunnableConfig()
+            cfg["callbacks"] = [st_callback]
+            
+            answer = mrkl.invoke({"input": user_input}, cfg)
+            
+            answer_container.write(answer["output"])
 
 
 # Power BI report URL

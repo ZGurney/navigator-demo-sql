@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import streamlit as st
+import streamlit_authenticator as stauth
 
 from langchain import hub
 from langchain.agents import AgentExecutor, Tool, create_react_agent

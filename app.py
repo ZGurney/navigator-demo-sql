@@ -49,7 +49,6 @@ DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 col1, col2 = st.columns([4, 1.2])  
 
 with col2:
-
     st.write("""
         <style>
             section[data-testid="column"] div[class^="css-"] {

@@ -1,4 +1,5 @@
 streamlit
+streamlit-float
 langchain
 langchain-community
 langchain-experimental
@@ -12,3 +13,4 @@ networkx
 openpyxl
 duckduckgo-search
 numexpr
+databricks-sql-connector

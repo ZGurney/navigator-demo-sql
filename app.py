@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 
 import streamlit as st
+from streamlit_float import *
 
 from langchain import hub
 from langchain.agents import AgentExecutor, Tool, create_react_agent
@@ -10,7 +11,9 @@ from langchain.agents import AgentExecutor, Tool, create_react_agent
 from langchain_community.callbacks import StreamlitCallbackHandler
 from langchain_community.utilities import SQLDatabase#, DuckDuckGoSearchAPIWrapper
 from langchain_core.runnables import RunnableConfig
+from langchain.memory import ConversationBufferMemory
 from langchain_experimental.sql import SQLDatabaseChain
+from langchain.memory.chat_message_histories import StreamlitChatMessageHistory
 from langchain_openai import AzureChatOpenAI
 
 from modules.clear_results import with_clear_container
@@ -45,6 +48,7 @@ st.write(combined_css, unsafe_allow_html=True)
 # Set path to database /data/patents-100k.db
 DB_PATH = (Path(__file__).parent / "data/patents-100k.db").absolute()
 
+<<<<<<< Updated upstream
 # Divide the layout into two columns
 col1, col2 = st.columns([4, 1.2])  
 
@@ -61,6 +65,13 @@ with col2:
     
     st.image("Screenshot 2024-02-14 112940.png")
     st.subheader("Ask me anything!")
+=======
+# Get user query and run the react agent
+# if user_query := st.chat_input(key="content", placeholder="Ask me anything!"):
+
+with st.sidebar:
+    st.title("Ask me anything!")
+>>>>>>> Stashed changes
     
     # Tools setup
     llm = AzureChatOpenAI(
@@ -92,10 +103,11 @@ with col2:
         ),
     ]
 
-    # Initialize agent with prompt from hwchase17/react on LangChain Hub
-    react_agent = create_react_agent(llm, tools, prompt=hub.pull("hwchase17/react"))
-    mrkl = AgentExecutor(agent=react_agent, tools=tools)
+    # Setup memory for contextual conversation
+    msgs = StreamlitChatMessageHistory()
+    memory = ConversationBufferMemory(memory_key="chat_history", chat_memory=msgs, return_messages=True, human_prefix="user", ai_prefix="assistant")
 
+<<<<<<< Updated upstream
     with st.form(key="form"):
             user_input = st.text_input("User query")
             submit_clicked = st.form_submit_button("Submit Question")
@@ -113,6 +125,42 @@ with col2:
         answer = mrkl.invoke({"input": user_input}, cfg)
         
         answer_container.write(answer["output"])
+=======
+    # Initialize agent with prompt from hwchase17/react on LangChain Hub
+    react_agent = create_react_agent(llm, tools, prompt=hub.pull("zgurney/react-chat-2"))
+    mrkl = AgentExecutor(agent=react_agent, tools=tools, memory=memory)
+
+    # Clear message history if requested
+    if "messages" not in st.session_state or st.sidebar.button("Clear message history"):
+        msgs.clear()
+        st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+
+    # Display chat messages from the session state
+    for msg in st.session_state.messages:
+        with st.chat_message(msg["role"], avatar="navigator.png" if msg["role"] == "assistant" else "user"):
+            st.write(msg["content"])
+
+    if user_query := st.chat_input(key="content", placeholder="Ask me anything!"):
+        st.session_state.messages.append({"role": "user", "content": user_query})
+        st.chat_message("user").write(user_query)
+
+        with st.chat_message("assistant", avatar="navigator.png"):
+            st_callback = StreamlitCallbackHandler(st.container()) # Callback handler for agent's thinking processes
+            response = mrkl.invoke({"input": user_query}, {"callbacks":[st_callback]}) # Agent acts on user query
+            st.session_state.messages.append({"role": "assistant", "content": response["output"]}) # Add response to message history
+            st.write(response["output"]) # Display response
+
+    
+    # message_container = st.empty()
+
+    # float_init()
+
+    # with st.container():
+    #     st.chat_input(key="user_input", on_submit=chat)
+    #     button_b_pos = "0rem"
+    #     button_css = float_css_helper(width="2.2rem", bottom=button_b_pos, transition=0)
+    #     float_parent(css=button_css)    
+>>>>>>> Stashed changes
 
 
 # Power BI report URL

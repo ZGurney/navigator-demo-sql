@@ -105,7 +105,7 @@ with col2:
         output_container = output_container.container()
         output_container.chat_message("user").write(user_input)
         
-        answer_container = output_container.chat_message("assistant", avatar="Screenshot 2024-01-04 144948.png")
+        answer_container = output_container.chat_message("assistant", avatar="navigator.png")
         st_callback = StreamlitCallbackHandler(answer_container)
         cfg = RunnableConfig()
         cfg["callbacks"] = [st_callback]
